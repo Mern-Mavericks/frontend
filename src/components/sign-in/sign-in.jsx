@@ -80,7 +80,7 @@ const SignIn = () => {
                     title="Password must be at least 6 characters long"
                   />
                 </div>
-                <button type="submit" className="btn btn-primary w-100">
+                <button type="submit" className="btn btn-primary w-100 mt-3">
                   Sign In
                 </button>
               </form>
