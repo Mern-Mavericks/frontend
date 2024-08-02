@@ -1,40 +1,38 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './nav-bar.css';
-// import { useAuth } from "../../../../context/authContext";
+import { useAuth } from '../../context/auth-context';
 
 const Navbar = () => {
-  // const { isAuthenticated, signout } = useAuth();
+  const { isAuthenticated, signout } = useAuth();
 
   return (
-
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">MERN Mavericks</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-      {/* {isAuthenticated ? ( */}
-        <li class="nav-item">
-          <a class="nav-link" href="my-profile">MY PROFILE</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="sign-in">SIGN OUT</a>
-        </li>
-         {/* ) : ( */}
-        <li class="nav-item">
-          <a class="nav-link" href="sign-up">SIGN UP</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="sign-in"> SIGN IN</a>
-        </li>
-          {/* )} */}
-      </ul>
-    </div>
-  </div>
-</nav>
+    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <div className="container-fluid">
+        <a className="navbar-brand" href="#">
+          <img src="/path/to/your/logo.png" alt="Logo" width="30" height="30" className="d-inline-block align-text-top" />
+          MERN Mavericks
+        </a>
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <Link className="nav-link" to="/my-profile">MY PROFILE</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/sign-in">SIGN OUT</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/sign-up">SIGN UP</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/sign-in">SIGN IN</Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   );
 };
 

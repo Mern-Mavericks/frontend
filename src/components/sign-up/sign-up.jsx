@@ -1,18 +1,13 @@
 import React, { useState } from 'react';
-// import { signup } from "../../../../api/authApi";
-import './sign-up.css';
 
 const SignUp = () => {
-  // State to manage form data for name, email, and password
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
   });
-  // State to manage message shown to user
   const [message, setMessage] = useState('');
 
-  // Handler to update form data state when input changes
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -20,7 +15,6 @@ const SignUp = () => {
     });
   };
 
-  // Handler to manage form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.password) {
@@ -28,7 +22,7 @@ const SignUp = () => {
     }
 
     try {
-      // API call to sign in the user with the provided credentials
+      // API call to sign up the user with the provided credentials
       const res = await signup(formData);
       if (res.error) {
         setMessage(res.error);
@@ -42,55 +36,61 @@ const SignUp = () => {
 
   const displayErrorMessage = () => {
     if (message) {
-      return <p>{message}</p>;
+      return <p className="text-danger mt-3">{message}</p>;
     }
     return null;
   };
 
   return (
-    <div className="sign-up-container mt-5">
-      <h2>Sign Up</h2>
-      <form onSubmit={handleSubmit} className="sign-up-form">
-        <div className="form-group">
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            className="form-control"
-          />
+    <div className="container mt-5">
+      <div className="row justify-content-center">
+        <div className="col-md-6">
+          <div className="card">
+            <div className="card-body">
+              <h2 className="card-title text-center">Sign Up</h2>
+              <form onSubmit={handleSubmit}>
+                <div className="mb-3">
+                  <label htmlFor="name" className="form-label">Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="form-control"
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="email" className="form-label">Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="form-control"
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="password" className="form-label">Password</label>
+                  <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    className="form-control"
+                  />
+                </div>
+                <button type="submit" className="btn btn-primary w-100">
+                  Sign Up
+                </button>
+                {displayErrorMessage()}
+              </form>
+            </div>
+          </div>
         </div>
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            className="form-control"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            className="form-control"
-          />
-        </div>
-        <button type="submit" className="submit-button">
-          Sign Up
-        </button>
-        {displayErrorMessage && (
-          <div className="error-message">{displayErrorMessage()}</div>
-        )}
-      </form>
+      </div>
     </div>
   );
 };
