@@ -32,7 +32,7 @@ const HomePage = () => {
         <div className="container">
           <h2 className="text-center mb-4">Featured Products</h2>
           <div className="row">
-            <div className="col-md-4">
+            <div className="col-4">
               <div className="card mb-4">
                 <img src="https://via.placeholder.com/300" className="card-img-top" alt="Product 1" />
                 <div className="card-body">
@@ -42,7 +42,7 @@ const HomePage = () => {
                 </div>
               </div>
             </div>
-            <div className="col-md-4">
+            <div className="col-4">
               <div className="card mb-4">
                 <img src="https://via.placeholder.com/300" className="card-img-top" alt="Product 2" />
                 <div className="card-body">
@@ -52,7 +52,7 @@ const HomePage = () => {
                 </div>
               </div>
             </div>
-            <div className="col-md-4">
+            <div className="col-4">
               <div className="card mb-4">
                 <img src="https://via.placeholder.com/300" className="card-img-top" alt="Product 3" />
                 <div className="card-body">
