@@ -7,44 +7,34 @@ const Navbar = () => {
   // const { isAuthenticated, signout } = useAuth();
 
   return (
-    <nav className="navbar">
-      <div className="navbar-container">
-        <Link to="/" className="navbar-logo">
-          MERN Mavericks
-        </Link>
-        <div className="navbar-links">
-          <Link to="/users" className="navbar-link">
-            USERS
-          </Link>
-          {/* // If the user is authenticated (isAuthenticated is true), show the
-          "MY PROFILE" and "SIGN OUT" links */}
-          {/* {isAuthenticated ? ( */}
-          <>
-            <Link to="/profile" className="navbar-link">
-              MY PROFILE
-            </Link>
-            <Link
-              to="/"
-              className="navbar-link"
-              // onClick={signout}
-            >
-              SIGN OUT
-            </Link>
-          </>
-          {/* ) : ( */}
-          {/* // If the user is not authenticated (isAuthenticated is false), show the "SIGN UP" and "SIGN IN" links */}
-          <>
-            <Link to="/signup" className="navbar-link">
-              SIGN UP
-            </Link>
-            <Link to="/signin" className="navbar-link">
-              SIGN IN
-            </Link>
-          </>
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">MERN Mavericks</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+      {/* {isAuthenticated ? ( */}
+        <li class="nav-item">
+          <a class="nav-link" href="my-profile">MY PROFILE</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="sign-in">SIGN OUT</a>
+        </li>
+         {/* ) : ( */}
+        <li class="nav-item">
+          <a class="nav-link" href="sign-up">SIGN UP</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="sign-in"> SIGN IN</a>
+        </li>
           {/* )} */}
-        </div>
-      </div>
-    </nav>
+      </ul>
+    </div>
+  </div>
+</nav>
   );
 };
 
