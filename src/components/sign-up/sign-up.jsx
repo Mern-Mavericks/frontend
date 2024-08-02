@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
+import { signup } from '../../api/auth-api';
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -6,7 +8,6 @@ const SignUp = () => {
     email: '',
     password: '',
   });
-  const [message, setMessage] = useState('');
 
   const handleChange = (e) => {
     setFormData({
@@ -18,39 +19,34 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.password) {
-      return setMessage('All fields are required');
+      return toast.error('All fields are required');
     }
 
     try {
-      // API call to sign up the user with the provided credentials
       const res = await signup(formData);
       if (res.error) {
-        setMessage(res.error);
+        toast.error(res.error);
       } else {
-        setMessage('Successfully signed up!');
+        toast.success('Successfully signed up!');
+        navigate('/sign-in');
       }
     } catch (err) {
-      setMessage(err.message);
+      toast.error(err.message);
     }
-  };
-
-  const displayErrorMessage = () => {
-    if (message) {
-      return <p className="text-danger mt-3">{message}</p>;
-    }
-    return null;
   };
 
   return (
     <div className="container mt-5">
       <div className="row justify-content-center">
-        <div className="col-md-6">
+        <div className="col-md-4">
           <div className="card">
             <div className="card-body">
               <h2 className="card-title text-center">Sign Up</h2>
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
-                  <label htmlFor="name" className="form-label">Name</label>
+                  <label htmlFor="name" className="form-label">
+                    Name <span className="text-danger">*</span>
+                  </label>
                   <input
                     type="text"
                     id="name"
@@ -58,10 +54,14 @@ const SignUp = () => {
                     value={formData.name}
                     onChange={handleChange}
                     className="form-control"
+                    required
+                    title="Please enter your name"
                   />
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="email" className="form-label">Email</label>
+                  <label htmlFor="email" className="form-label">
+                    Email <span className="text-danger">*</span>
+                  </label>
                   <input
                     type="email"
                     id="email"
@@ -69,10 +69,15 @@ const SignUp = () => {
                     value={formData.email}
                     onChange={handleChange}
                     className="form-control"
+                    required
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                    title="Please enter a valid email address"
                   />
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="password" className="form-label">Password</label>
+                  <label htmlFor="password" className="form-label">
+                    Password <span className="text-danger">*</span>
+                  </label>
                   <input
                     type="password"
                     id="password"
@@ -80,12 +85,14 @@ const SignUp = () => {
                     value={formData.password}
                     onChange={handleChange}
                     className="form-control"
+                    required
+                    minLength="6"
+                    title="Password must be at least 6 characters long"
                   />
                 </div>
                 <button type="submit" className="btn btn-primary w-100">
                   Sign Up
                 </button>
-                {displayErrorMessage()}
               </form>
             </div>
           </div>
