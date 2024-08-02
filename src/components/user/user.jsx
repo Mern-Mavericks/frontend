@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { getAllUsers } from "../../../../api/authApi";
+import React, { useState, useEffect } from 'react';
+// import { getAllUsers } from "../../../../api/authApi";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
     const fetchAllUsers = async () => {
-      try {
-        const result = await getAllUsers();
-        if (result.error) {
-          setMessage(result.error);
-        } else {
-          setUsers(result);
-        }
-      } catch (err) {
-        setMessage("Failed to fetch users");
-      }
+      // try {
+      //   const result = await getAllUsers();
+      //   if (result.error) {
+      //     setMessage(result.error);
+      //   } else {
+      //     setUsers(result);
+      //   }
+      // } catch (err) {
+      //   setMessage("Failed to fetch users");
+      // }
     };
     fetchAllUsers();
   }, []);

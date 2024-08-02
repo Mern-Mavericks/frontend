@@ -1,39 +1,46 @@
-import React, { useState } from "react";
-import { signup } from "../../../../api/authApi";
-import './SignUp.css';
+import React, { useState } from 'react';
+// import { signin } from "../../../../api/authApi";
+import { useNavigate } from 'react-router-dom';
+// import { useAuth } from "../../../../context/authContext";
+import './sign-in.css';
 
-const SignUp = () => {
-  // State to manage form data for name, email, and password
+const SignIn = () => {
+  // State to manage form data for email and password
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
   // State to manage message shown to user
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState('');
+  const navigate = useNavigate();
+
+  // const { login } = useAuth();
 
   // Handler to update form data state when input changes
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value.trim(),
+      [e.target.name]: e.target.value,
     });
   };
 
   // Handler to manage form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.password) {
-      return setMessage("All fields are required");
+    if (!formData.email || !formData.password) {
+      return setMessage('All fields are required');
     }
 
     try {
       // API call to sign in the user with the provided credentials
-      const res = await signup(formData);
+      const res = await signin(formData);
       if (res.error) {
         setMessage(res.error);
       } else {
-        setMessage("Successfully signed up!");
+        setMessage('Successfully signed in!');
+        localStorage.setItem('token', res.token);
+        // login(); // Call the login function from auth context to update the state
+        navigate('/');
       }
     } catch (err) {
       setMessage(err.message);
@@ -48,20 +55,9 @@ const SignUp = () => {
   };
 
   return (
-    <div className="sign-up-container">
-      <h2>Sign Up</h2>
-      <form onSubmit={handleSubmit} className="sign-up-form">
-        <div className="form-group">
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            className="form-control"
-          />
-        </div>
+    <div className="sign-in-container">
+      <h2>Sign In</h2>
+      <form onSubmit={handleSubmit} className="sign-in-form">
         <div className="form-group">
           <label htmlFor="email">Email</label>
           <input
@@ -84,12 +80,15 @@ const SignUp = () => {
             className="form-control"
           />
         </div>
-        <button type="submit" className="submit-button">Sign Up</button>
-        {displayErrorMessage && <div className="error-message">{displayErrorMessage()}</div>}
+        <button type="submit" className="submit-button">
+          Sign In
+        </button>
+        {displayErrorMessage && (
+          <div className="error-message">{displayErrorMessage()}</div>
+        )}
       </form>
     </div>
   );
 };
 
-
-export default SignUp;
+export default SignIn;
