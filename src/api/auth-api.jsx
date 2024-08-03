@@ -28,3 +28,12 @@ export const signup = async (userData) => {
     return { error: error.response.data.message || 'Sign up failed' };
   }
 };
+
+export const getUsers = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/users`); // Adjust the URL to match your API endpoint
+    return response.data;
+  } catch (error) {
+    return { error: error.response.data.message || 'Failed to fetch users' };
+  }
+};

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 // import { getAllUsers } from "../../../../api/authApi";
+import { getUsers } from '../../api/auth-api'
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -7,16 +8,16 @@ const Users = () => {
 
   useEffect(() => {
     const fetchAllUsers = async () => {
-      // try {
-      //   const result = await getAllUsers();
-      //   if (result.error) {
-      //     setMessage(result.error);
-      //   } else {
-      //     setUsers(result);
-      //   }
-      // } catch (err) {
-      //   setMessage("Failed to fetch users");
-      // }
+      try {
+        const result = await getUsers();
+        if (result.error) {
+          setMessage(result.error);
+        } else {
+          setUsers(result);
+        }
+      } catch (err) {
+        setMessage('Failed to fetch users');
+      }
     };
     fetchAllUsers();
   }, []);
