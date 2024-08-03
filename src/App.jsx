@@ -30,7 +30,7 @@ const App = () => {
           </div>
           <Footer />
         </div>
-        <ToastContainer />
+        <ToastContainer position='bottom-right' />
       </Router>
     </AuthProvider>
   );
