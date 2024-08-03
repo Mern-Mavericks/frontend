@@ -1,8 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../footer/footer';
+import axios from 'axios';
 
 const HomePage = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchFeaturedProducts = async () => {
+      const token = localStorage.getItem('token'); // Retrieve the token from localStorage
+
+      try {
+        const response = await axios.get('http://localhost:3000/api/products/featured', {
+          headers: {
+            Authorization: `Bearer ${token}`, // Set the Authorization header with the token
+          }
+        });
+        setProducts(response.data);
+      } catch (error) {
+        console.error('Error fetching featured products:', error);
+      }
+    };
+
+    fetchFeaturedProducts();
+  }, []);
   return (
     <div>
       {/* Header */}
@@ -32,39 +53,32 @@ const HomePage = () => {
         <div className="container">
           <h2 className="text-center mb-4">Featured Products</h2>
           <div className="row">
-            <div className="col-4">
-              <div className="card mb-4">
-                <img src="https://via.placeholder.com/300" className="card-img-top" alt="Product 1" />
-                <div className="card-body">
-                  <h5 className="card-title">Product 1</h5>
-                  <p className="card-text">$19.99</p>
-                  <Link to="/product/1" className="btn btn-primary">View Details</Link>
+            {products.length > 0 ? (
+              products.map(product => (
+                <div className="col-md-4" key={product._id}>
+                  <div className="card mb-4">
+                    <img 
+                      src={product.image || "https://via.placeholder.com/300"} 
+                      className="card-img-top" 
+                      alt={product.name} 
+                    />
+                    <div className="card-body">
+                      <h5 className="card-title">{product.name}</h5>
+                      <p className="card-text">${product.price}</p>
+                      <Link to={`/product/${product._id}`} className="btn btn-primary">View Details</Link>
+                    </div>
+                  </div>
                 </div>
+              ))
+            ) : (
+              <div className="col-12 text-center">
+                <p>No featured products available.</p>
               </div>
-            </div>
-            <div className="col-4">
-              <div className="card mb-4">
-                <img src="https://via.placeholder.com/300" className="card-img-top" alt="Product 2" />
-                <div className="card-body">
-                  <h5 className="card-title">Product 2</h5>
-                  <p className="card-text">$29.99</p>
-                  <Link to="/product/2" className="btn btn-primary">View Details</Link>
-                </div>
-              </div>
-            </div>
-            <div className="col-4">
-              <div className="card mb-4">
-                <img src="https://via.placeholder.com/300" className="card-img-top" alt="Product 3" />
-                <div className="card-body">
-                  <h5 className="card-title">Product 3</h5>
-                  <p className="card-text">$39.99</p>
-                  <Link to="/product/3" className="btn btn-primary">View Details</Link>
-                </div>
-              </div>
-            </div>
+            )}
           </div>
         </div>
       </section>
+
     </div>
   );
 };

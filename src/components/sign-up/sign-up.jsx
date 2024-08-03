@@ -23,6 +23,7 @@ const SignUp = () => {
     }
 
     try {
+      console.log(formData)
       const res = await signup(formData);
       if (res.error) {
         toast.error(res.error);
