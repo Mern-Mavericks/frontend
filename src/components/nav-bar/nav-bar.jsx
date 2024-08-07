@@ -21,10 +21,22 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand bg-dark border-bottom border-body" data-bs-theme="dark">
+    <nav
+      className="navbar navbar-expand bg-dark border-bottom border-body"
+      data-bs-theme="dark"
+    >
       <div className="container-fluid">
-        <Link className="navbar-brand d-flex justify-content-center align-items-center" to="/">
-          <img src="/MERN Mavericks.png" alt="Logo" width="30" height="30" className="d-inline-block align-text-top me-2" />
+        <Link
+          className="navbar-brand d-flex justify-content-center align-items-center"
+          to="/"
+        >
+          <img
+            src="/MERN Mavericks.png"
+            alt="Logo"
+            width="30"
+            height="30"
+            className="d-inline-block align-text-top me-2"
+          />
           MERN Mavericks
         </Link>
         <div className="navbar-collapse d-flex justify-content-end align-items-center">
@@ -32,22 +44,35 @@ const Navbar = () => {
             {isAuthenticated ? (
               <>
                 <li className="nav-item">
-                <Link className="nav-link" to="/users">USERS</Link>
+                  <Link className="nav-link" to="/users">
+                    USERS
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/my-profile">MY PROFILE</Link>
+                  <Link className="nav-link" to="/my-profile">
+                    MY PROFILE
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <button className="nav-link btn btn-link" onClick={handleSignOut}>SIGN OUT</button>
+                  <button
+                    className="nav-link btn btn-link"
+                    onClick={handleSignOut}
+                  >
+                    SIGN OUT
+                  </button>
                 </li>
               </>
             ) : (
               <>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/sign-up">SIGN UP</Link>
+                  <Link className="nav-link" to="/sign-up">
+                    SIGN UP
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/sign-in">SIGN IN</Link>
+                  <Link className="nav-link" to="/sign-in">
+                    SIGN IN
+                  </Link>
                 </li>
               </>
             )}

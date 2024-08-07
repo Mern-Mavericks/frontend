@@ -11,11 +11,14 @@ const HomePage = () => {
       const token = localStorage.getItem('token'); // Retrieve the token from localStorage
 
       try {
-        const response = await axios.get('http://localhost:3000/api/products/featured', {
-          headers: {
-            Authorization: `Bearer ${token}`, // Set the Authorization header with the token
-          }
-        });
+        const response = await axios.get(
+          'http://localhost:3000/api/products/featured',
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // Set the Authorization header with the token
+            },
+          },
+        );
         setProducts(response.data);
       } catch (error) {
         console.error('Error fetching featured products:', error);
@@ -36,7 +39,8 @@ const HomePage = () => {
       <section
         className="hero bg-light text-center py-5"
         style={{
-          background: 'url(https://via.placeholder.com/1200x400) no-repeat center center',
+          background:
+            'url(https://via.placeholder.com/1200x400) no-repeat center center',
           backgroundSize: 'cover',
           color: '#fff',
         }}
@@ -44,7 +48,9 @@ const HomePage = () => {
         <div className="container">
           <h2>Welcome to MERN Mavericks Store</h2>
           <p>Discover the best products at unbeatable prices</p>
-          <Link to="/sign-up" className="btn btn-primary mt-3">Sign Up Now</Link>
+          <Link to="/sign-up" className="btn btn-primary mt-3">
+            Sign Up Now
+          </Link>
         </div>
       </section>
 
@@ -54,18 +60,23 @@ const HomePage = () => {
           <h2 className="text-center mb-4">Featured Products</h2>
           <div className="row">
             {products.length > 0 ? (
-              products.map(product => (
+              products.map((product) => (
                 <div className="col-md-4" key={product._id}>
                   <div className="card mb-4">
-                    <img 
-                      src={product.image || "https://via.placeholder.com/300"} 
-                      className="card-img-top" 
-                      alt={product.name} 
+                    <img
+                      src={product.image || 'https://via.placeholder.com/300'}
+                      className="card-img-top"
+                      alt={product.name}
                     />
                     <div className="card-body">
                       <h5 className="card-title">{product.name}</h5>
                       <p className="card-text">${product.price}</p>
-                      <Link to={`/product/${product._id}`} className="btn btn-primary">View Details</Link>
+                      <Link
+                        to={`/product/${product._id}`}
+                        className="btn btn-primary"
+                      >
+                        View Details
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -78,7 +89,6 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-
     </div>
   );
 };

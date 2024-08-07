@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 // import { getAllUsers } from "../../../../api/authApi";
-import { getUsers } from '../../api/auth-api'
+import { getUsers } from '../../api/auth-api';
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -34,8 +34,10 @@ const Users = () => {
       <h2>All Users</h2>
       {displayErrorMessage()}
       <ul>
-        {users.map((user) => (
-          <li key={user._id}>{user.username}</li>
+        {users.map((user, index) => (
+          <li key={index}>{user.username || user.name}</li>
+          //        {users.map((user) => (
+          //          <li key={user._id}>{user.username}</li>
         ))}
       </ul>
     </div>
