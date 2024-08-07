@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { signup } from '../../api/auth-api';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -8,6 +9,8 @@ const SignUp = () => {
     email: '',
     password: '',
   });
+
+  const navigate = useNavigate(); // Get the navigate function
 
   const handleChange = (e) => {
     setFormData({
