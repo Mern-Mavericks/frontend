@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../footer/footer';
 import axios from 'axios';
+import './home-page.css';
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
@@ -27,6 +28,7 @@ const HomePage = () => {
 
     fetchFeaturedProducts();
   }, []);
+
   return (
     <div>
       {/* Header */}
@@ -36,15 +38,7 @@ const HomePage = () => {
       </header>
 
       {/* Hero Section */}
-      <section
-        className="hero bg-light text-center py-5"
-        style={{
-          background:
-            'url(https://via.placeholder.com/1200x400) no-repeat center center',
-          backgroundSize: 'cover',
-          color: '#fff',
-        }}
-      >
+      <section className="hero">
         <div className="container">
           <h2>Welcome to MERN Mavericks Store</h2>
           <p>Discover the best products at unbeatable prices</p>
@@ -89,6 +83,8 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+
+    
     </div>
   );
 };

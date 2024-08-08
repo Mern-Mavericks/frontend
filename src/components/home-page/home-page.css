@@ -1,0 +1,134 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Header Styles */
+  header {
+    background-color: #343a40;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+  }
+  
+  header p {
+    margin: 0.5rem 0 0;
+  }
+  
+  /* Hero Section Styles */
+  .hero {
+    background: url('https://via.placeholder.com/1200x400') no-repeat center center;
+    background-size: cover;
+    color: #fff;
+    text-align: center;
+    padding: 5rem 0;
+  }
+  
+  .hero .container {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 2rem;
+    border-radius: 8px;
+  }
+  
+  .hero h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .hero .btn {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+  
+  /* Product Listings Styles */
+  .products {
+    background-color: #f8f9fa;
+  }
+  
+  .products .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  .products h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .products .card {
+    border: none;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .products .card:hover {
+    transform: scale(1.05);
+  }
+  
+  .products .card-img-top {
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .products .card-body {
+    padding: 1rem;
+    background-color: #fff;
+  }
+  
+  .products .card-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .products .card-text {
+    font-size: 1rem;
+    color: #6c757d;
+  }
+  
+  .products .btn {
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .products .btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Footer Styles */
+  footer {
+    background-color: #343a40;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  footer a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+  }
+  
+  footer a:hover {
+    color: #0056b3;
+  }
+  
