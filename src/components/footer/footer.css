@@ -1,18 +1,17 @@
 .footer {
-    background-color: #343a40;
-    color: #fff;
-    padding: 1rem 0;
-    text-align: center;
-  }
-  
-  .footer a {
-    color: #007bff;
-    text-decoration: none;
-    margin: 0 10px;
-    transition: color 0.2s ease-in-out;
-  }
-  
-  .footer a:hover {
-    color: #0056b3;
-  }
-  
+  background-color: #343a40;
+  color: #fff;
+  padding: 1rem 0;
+  text-align: center;
+}
+
+.footer a {
+  color: #007bff;
+  text-decoration: none;
+  margin: 0 10px;
+  transition: color 0.2s ease-in-out;
+}
+
+.footer a:hover {
+  color: #0056b3;
+}
