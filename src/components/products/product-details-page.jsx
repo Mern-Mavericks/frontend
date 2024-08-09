@@ -21,7 +21,7 @@ const images = {
 };
 
 const ProductDetailsPage = () => {
-  const { id } = useParams(); // Get the product ID from the URL
+  const { id } = useParams();
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
@@ -38,7 +38,6 @@ const ProductDetailsPage = () => {
           },
         );
         setProduct(res.data);
-        console.log(res.data);
       } catch (error) {
         console.error('Error fetching product details:', error);
       }
@@ -48,7 +47,7 @@ const ProductDetailsPage = () => {
   }, [id]);
 
   if (!product) {
-    return <div>Product not found</div>; // Handle case when product is not found
+    return <div>Product not found</div>;
   }
 
   const imageSrc = images[product.image] || 'https://via.placeholder.com/300';
@@ -56,10 +55,12 @@ const ProductDetailsPage = () => {
   return (
     <div className="product-page-container">
       <ProductDetailsCard
+        product={product}
         title={product.name}
         price={product.price}
         description={product.description}
         image={imageSrc}
+        id={product._id}
       />
     </div>
   );

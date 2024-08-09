@@ -1,18 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './product-details-card.css';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/auth-context';
+import { useCart } from '../../context/cart-context';
 
-const ProductDetailsCard = ({ title, price, description, image }) => {
-  const { isAuthenticated } = useAuth(); // Get authentication status from context
+const ProductDetailsCard = ({ product, title, price, description, image }) => {
+  const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
+  const { addProduct } = useCart();
+  const [quantity, setQuantity] = useState(1);
 
   const validateShopper = () => {
     if (!isAuthenticated) {
       navigate('/sign-in');
     } else {
-      // Logic to add the product to the cart
-      console.log('Product added to cart');
+      if (product) {
+        addProduct(product, quantity); // Pass product and quantity
+        console.log('Product added to cart:', product);
+      } else {
+        console.error('Product is undefined or missing details');
+      }
     }
   };
 
@@ -26,17 +33,17 @@ const ProductDetailsCard = ({ title, price, description, image }) => {
         <h4 className="product-price">${price}</h4>
         <div>
           <label htmlFor="quantity">Quantity:</label>
-          <select id="quantity" className="product-quantity">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
+          <select
+            id="quantity"
+            className="product-quantity"
+            value={quantity}
+            onChange={(e) => setQuantity(Number(e.target.value))} // Keep track of user changing the quantity
+          >
+            {[...Array(10).keys()].map((i) => (
+              <option key={i + 1} value={i + 1}>
+                {i + 1}
+              </option>
+            ))}
           </select>
           <button
             className="product-add-cart btn btn-primary"

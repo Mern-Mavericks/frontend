@@ -54,6 +54,11 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li className="nav-item">
+                  <Link className="nav-link" to="/cart">
+                    CART
+                  </Link>
+                </li>
+                <li className="nav-item">
                   <button
                     className="nav-link btn btn-link"
                     onClick={handleSignOut}
