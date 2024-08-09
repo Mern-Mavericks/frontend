@@ -44,6 +44,11 @@ const Navbar = () => {
             {isAuthenticated ? (
               <>
                 <li className="nav-item">
+                  <Link className="nav-link" to="/orders">
+                    ORDERS
+                  </Link>
+                </li>
+                <li className="nav-item">
                   <Link className="nav-link" to="/users">
                     USERS
                   </Link>

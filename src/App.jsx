@@ -17,6 +17,7 @@ import CartPage from './components/cart-page/cart-page';
 import { ToastContainer } from 'react-toastify';
 import { AuthProvider, useAuth } from './context/auth-context';
 import { CartProvider } from './context/cart-context';
+import MyProfile from './components/my-profile/my-profile';
 
 const ProtectedRoute = ({ element: Component, ...rest }) => {
   const { isAuthenticated } = useAuth();
@@ -26,36 +27,31 @@ const ProtectedRoute = ({ element: Component, ...rest }) => {
 const App = () => {
   return (
     <AuthProvider>
-      <CartProvider>
-        <Router>
-          <div className="d-flex flex-column min-vh-100">
-            <Navbar />
-            <div className="flex-grow-1">
-              <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/sign-in" element={<SignIn />} />
-                <Route path="/sign-up" element={<SignUp />} />
-                <Route
-                  path="/dashboard"
-                  element={<ProtectedRoute element={Dashboard} />}
-                />
-                <Route
-                  path="/users"
-                  element={<ProtectedRoute element={Users} />}
-                />
-                <Route
-                  path="/cart"
-                  element={<ProtectedRoute element={CartPage} />}
-                />
-                {/* Protected Route for Users */}
-                <Route path="/product/:id" element={<ProductDetailsPage />} />
-              </Routes>
-            </div>
-            <Footer />
+      <Router>
+        <div className="d-flex flex-column min-vh-100">
+          <Navbar />
+          <div className="flex-grow-1">
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/sign-in" element={<SignIn />} />
+              <Route path="/sign-up" element={<SignUp />} />
+              <Route
+                path="/dashboard"
+                element={<ProtectedRoute element={Dashboard} />}
+              />
+              <Route
+                path="/users"
+                element={<ProtectedRoute element={Users} />}
+              />
+              <Route
+                path="/my-profile"
+                element={<ProtectedRoute element={MyProfile} />}
+              />
+            </Routes>
           </div>
           <ToastContainer position="bottom-right" />
+      </div>
         </Router>
-      </CartProvider>
     </AuthProvider>
   );
 };

@@ -33,7 +33,7 @@ const SignIn = () => {
         toast.success('Successfully signed in!');
         localStorage.setItem('token', res.token);
         login(res.user); // Call the login function from auth context to update the state
-        navigate('/');
+        navigate('/dashboard');
       }
     } catch (err) {
       toast.error(err.message);
