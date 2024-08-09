@@ -37,8 +37,7 @@ const SignIn = () => {
         toast.error(res.error);
       } else {
         toast.success('Successfully signed in!');
-        localStorage.setItem('token', res.token);
-        login(res.user); // Call the login function from auth context to update the state
+        login(res.user, res.token);
         navigate('/dashboard');
       }
     } catch (err) {

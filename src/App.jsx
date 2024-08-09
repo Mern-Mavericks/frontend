@@ -12,11 +12,8 @@ import Dashboard from './components/dashboard/dashboard';
 import Users from './components/user/user';
 import Navbar from './components/nav-bar/nav-bar';
 import Footer from './components/footer/footer';
-import ProductDetailsPage from './components/products/product-details-page';
-import CartPage from './components/cart-page/cart-page';
 import { ToastContainer } from 'react-toastify';
 import { AuthProvider, useAuth } from './context/auth-context';
-import { CartProvider } from './context/cart-context';
 import MyProfile from './components/my-profile/my-profile';
 
 const ProtectedRoute = ({ element: Component, ...rest }) => {
@@ -50,8 +47,9 @@ const App = () => {
             </Routes>
           </div>
           <ToastContainer position="bottom-right" />
-      </div>
-        </Router>
+        </div>
+        <Footer />
+      </Router>
     </AuthProvider>
   );
 };

@@ -28,7 +28,7 @@ const Navbar = () => {
       <div className="container-fluid">
         <Link
           className="navbar-brand d-flex justify-content-center align-items-center"
-          to="/"
+          to={isAuthenticated ? '/dashboard' : '/'}
         >
           <img
             src="/MERN Mavericks.png"

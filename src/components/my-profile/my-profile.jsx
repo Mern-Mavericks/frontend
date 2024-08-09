@@ -32,20 +32,20 @@ const MyProfile = () => {
           <label htmlFor="profileImage" className="form-label">
             Profile Image <span className="text-danger">*</span>
           </label>
-          <input 
-            type="file" 
-            className="form-control" 
-            id="profileImage" 
+          <input
+            type="file"
+            className="form-control"
+            id="profileImage"
             onChange={handleImageChange}
             required
           />
           {profileImage && (
             <div className="d-flex justify-content-center my-3">
-              <img 
-                src={profileImage} 
-                alt="Profile" 
-                className="img-thumbnail" 
-                style={{ width: '150px', height: '150px' }} 
+              <img
+                src={profileImage}
+                alt="Profile"
+                className="img-thumbnail"
+                style={{ width: '150px', height: '150px' }}
               />
             </div>
           )}
@@ -55,11 +55,11 @@ const MyProfile = () => {
           <label htmlFor="name" className="form-label">
             Name <span className="text-danger">*</span>
           </label>
-          <input 
-            type="text" 
-            className="form-control" 
-            id="name" 
-            value={name} 
+          <input
+            type="text"
+            className="form-control"
+            id="name"
+            value={name}
             onChange={(e) => setName(e.target.value)}
             required
           />
@@ -69,11 +69,11 @@ const MyProfile = () => {
           <label htmlFor="address" className="form-label">
             Address <span className="text-danger">*</span>
           </label>
-          <input 
-            type="text" 
-            className="form-control" 
-            id="address" 
-            value={address} 
+          <input
+            type="text"
+            className="form-control"
+            id="address"
+            value={address}
             onChange={(e) => setAddress(e.target.value)}
             required
           />
@@ -83,22 +83,24 @@ const MyProfile = () => {
           <label htmlFor="phoneNumber" className="form-label">
             Phone Number <span className="text-danger">*</span>
           </label>
-          <input 
-            type="text" 
-            className="form-control" 
-            id="phoneNumber" 
-            value={phoneNumber} 
+          <input
+            type="text"
+            className="form-control"
+            id="phoneNumber"
+            value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
             required
           />
         </div>
 
         <div className="d-flex justify-content-center mt-4">
-          <button type="submit" className="btn btn-primary">Save Profile</button>
+          <button type="submit" className="btn btn-primary">
+            Save Profile
+          </button>
         </div>
       </form>
     </div>
   );
-}
+};
 
 export default MyProfile;
