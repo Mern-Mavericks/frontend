@@ -1,0 +1,11 @@
+.product-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .product-page-container {
+    padding: 5.5rem 0;
+  }
+}

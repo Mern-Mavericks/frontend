@@ -12,6 +12,7 @@ import Dashboard from './components/dashboard/dashboard';
 import Users from './components/user/user';
 import Navbar from './components/nav-bar/nav-bar';
 import Footer from './components/footer/footer';
+import ProductDetailsPage from './components/products/product-details-page';
 import { ToastContainer } from 'react-toastify';
 import { AuthProvider, useAuth } from './context/auth-context';
 
@@ -38,8 +39,9 @@ const App = () => {
               <Route
                 path="/users"
                 element={<ProtectedRoute element={Users} />}
-              />{' '}
+              />
               {/* Protected Route for Users */}
+              <Route path="/product/:id" element={<ProductDetailsPage />} />
             </Routes>
           </div>
           <Footer />
