@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const MyProfile = () => {
   const [profileImage, setProfileImage] = useState(null);
