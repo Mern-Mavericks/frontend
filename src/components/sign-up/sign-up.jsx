@@ -25,6 +25,12 @@ const SignUp = () => {
       return toast.error('All fields are required');
     }
 
+    // Email validation
+    const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+    if (!emailRegex.test(formData.email)) {
+      return toast.error('Please enter a valid email address');
+    }
+
     try {
       console.log(formData);
       const res = await signup(formData);
@@ -74,7 +80,6 @@ const SignUp = () => {
                     onChange={handleChange}
                     className="form-control"
                     required
-                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                     title="Please enter a valid email address"
                   />
                 </div>
