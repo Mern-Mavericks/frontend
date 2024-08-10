@@ -1,16 +1,15 @@
 import React from 'react';
 import { useCart } from '../../context/cart-context';
-
+import { useNavigate } from 'react-router-dom';
 const CartPage = () => {
   const { cart, updateQuantity, removeFromCart } = useCart();
-
+  const navigate = useNavigate();
   const calculateTotal = () => {
     return cart.reduce((acc, product) => acc + product.price * product.quantity, 0).toFixed(2);
   };
 
   const handleCheckout = () => {
-    // Implement checkout logic or redirect to checkout page
-    alert('Proceeding to checkout...');
+    navigate('/checkout');
   };
 
   return (

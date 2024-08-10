@@ -17,6 +17,8 @@ import { AuthProvider, useAuth } from './context/auth-context';
 import MyProfile from './components/my-profile/my-profile';
 import CartPage from './components/cart-page/cart-page';
 import { CartProvider } from './context/cart-context';
+import CheckoutPage from './components/checkout/checkout';
+import OrderPage from './components/orders/orders';
 
 const ProtectedRoute = ({ element: Component, ...rest }) => {
   const { isAuthenticated } = useAuth();
@@ -51,7 +53,14 @@ const App = () => {
               <Route
                 path="/cart"
                 element={<ProtectedRoute element={CartPage} />}
-              />
+              /><Route
+              path="/checkout"
+              element={<ProtectedRoute element={CheckoutPage} />}
+            />
+            <Route
+              path="/orders"
+              element={<ProtectedRoute element={OrderPage} />}
+            />
             </Routes>
           </div>
           <ToastContainer position="bottom-right" />
