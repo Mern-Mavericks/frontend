@@ -27,10 +27,10 @@ const ProductDetailsPage = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       const token = localStorage.getItem('token');
-
+      const API_URL = import.meta.env.VITE_API_URL;
       try {
         const res = await axios.get(
-          `http://localhost:3000/api/products/${id}`,
+          `${API_URL}/api/products/${id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

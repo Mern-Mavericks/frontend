@@ -8,8 +8,9 @@ const OrderPage = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
+        const API_URL = import.meta.env.VITE_API_URL;
         const token = localStorage.getItem('token');
-        const response = await axios.get('/api/orders/current', {
+        const response = await axios.get(`${API_URL}/api/orders/current`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

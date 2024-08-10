@@ -36,11 +36,11 @@ const CheckoutPage = () => {
       userName: orderDetails.name,
       phoneNumber: orderDetails.phoneNumber,
     }));
-
+    const API_URL = import.meta.env.VITE_API_URL;
     try {
       await Promise.all(
         orderPayload.map(async (order) => {
-          await axios.post('/api/orders/create', order, {
+          await axios.post(`${API_URL}/api/orders/create`, order, {
             headers: {
               Authorization: `Bearer ${localStorage.getItem('token')}`,
             },
