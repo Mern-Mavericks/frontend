@@ -1,11 +1,15 @@
 import React from 'react';
 import { useCart } from '../../context/cart-context';
 import { useNavigate } from 'react-router-dom';
+
 const CartPage = () => {
   const { cart, updateQuantity, removeFromCart } = useCart();
   const navigate = useNavigate();
+
   const calculateTotal = () => {
-    return cart.reduce((acc, product) => acc + product.price * product.quantity, 0).toFixed(2);
+    return cart
+      .reduce((acc, product) => acc + product.price * product.quantity, 0)
+      .toFixed(2);
   };
 
   const handleCheckout = () => {
@@ -29,14 +33,29 @@ const CartPage = () => {
               >
                 <div className="d-flex align-items-center">
                   <img
-                    src={product.image}
+                    src={
+                      product.image
+                        ? `src/${product.image}`
+                        : 'https://via.placeholder.com/80'
+                    }
                     alt={product.name}
-                    style={{ width: '80px', height: '80px', objectFit: 'cover', marginRight: '15px' }}
+                    style={{
+                      width: '80px',
+                      height: '80px',
+                      objectFit: 'cover',
+                      marginRight: '15px',
+                    }}
                   />
                   <div>
-                    <h5 className="mb-1">{product.name}</h5>
-                    <p className="mb-1 text-muted">Price: ${product.price.toFixed(2)}</p>
-                    <p className="mb-0 text-muted">Total: ${(product.price * product.quantity).toFixed(2)}</p>
+                    <h5 className="mb-1">
+                      {product.name || 'Unnamed Product'}
+                    </h5>
+                    <p className="mb-1 text-muted">
+                      Price: ${product.price?.toFixed(2) || 'N/A'}
+                    </p>
+                    <p className="mb-0 text-muted">
+                      Total: ${(product.price * product.quantity).toFixed(2)}
+                    </p>
                   </div>
                 </div>
                 <div className="d-flex align-items-center">
@@ -64,10 +83,7 @@ const CartPage = () => {
             <h4>Total: ${calculateTotal()}</h4>
           </div>
           <div className="text-center">
-            <button 
-              className="btn btn-primary btn-lg"
-              onClick={handleCheckout}
-            >
+            <button className="btn btn-primary btn-lg" onClick={handleCheckout}>
               Proceed to Checkout
             </button>
           </div>

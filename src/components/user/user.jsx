@@ -23,7 +23,10 @@ const Users = () => {
 
   return (
     <div className="container mt-5">
-      <h2 className="text-center mb-5" style={{ fontWeight: 'bold', color: '#333' }}>
+      <h2
+        className="text-center mb-5"
+        style={{ fontWeight: 'bold', color: '#333' }}
+      >
         All Users
       </h2>
       <div className="row">
@@ -38,16 +41,28 @@ const Users = () => {
               }}
             >
               <div className="card-body">
-                <h5 className="card-title" style={{ fontWeight: 'bold', color: '#007bff' }}>
+                <h5
+                  className="card-title"
+                  style={{ fontWeight: 'bold', color: '#007bff' }}
+                >
                   {user.username || 'N/A'}
                 </h5>
-                <p className="card-text" style={{ fontSize: '16px', color: '#555' }}>
+                <p
+                  className="card-text"
+                  style={{ fontSize: '16px', color: '#555' }}
+                >
                   Email: {user.email}
                 </p>
-                <p className="card-text" style={{ fontSize: '16px', color: '#555' }}>
+                <p
+                  className="card-text"
+                  style={{ fontSize: '16px', color: '#555' }}
+                >
                   Created At: {new Date(user.created_at).toLocaleDateString()}
                 </p>
-                <p className="card-text" style={{ fontSize: '16px', color: '#555' }}>
+                <p
+                  className="card-text"
+                  style={{ fontSize: '16px', color: '#555' }}
+                >
                   Last Updated: {new Date(user.updated).toLocaleDateString()}
                 </p>
               </div>

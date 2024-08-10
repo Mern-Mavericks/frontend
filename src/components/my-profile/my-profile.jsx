@@ -19,7 +19,6 @@ const MyProfile = () => {
       return;
     }
 
-    // Logic for form submission
     toast.success('Profile updated successfully!');
   };
 

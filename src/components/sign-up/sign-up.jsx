@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { signup } from '../../api/auth-api';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -10,7 +10,7 @@ const SignUp = () => {
     password: '',
   });
 
-  const navigate = useNavigate(); // Get the navigate function
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -25,7 +25,6 @@ const SignUp = () => {
       return toast.error('All fields are required');
     }
 
-    // Email validation
     const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
     if (!emailRegex.test(formData.email)) {
       return toast.error('Please enter a valid email address');

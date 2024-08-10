@@ -28,48 +28,47 @@ const ProtectedRoute = ({ element: Component, ...rest }) => {
 const App = () => {
   return (
     <CartProvider>
-
-    <AuthProvider>
-      <Router>
-        <div className="d-flex flex-column min-vh-100">
-          <Navbar />
-          <div className="flex-grow-1">
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/sign-in" element={<SignIn />} />
-              <Route path="/sign-up" element={<SignUp />} />
-              <Route
-                path="/dashboard"
-                element={<ProtectedRoute element={Dashboard} />}
-              />
-              <Route
-                path="/users"
-                element={<ProtectedRoute element={Users} />}
-              />
-              <Route
-                path="/my-profile"
-                element={<ProtectedRoute element={MyProfile} />}
-              />
-              <Route
-                path="/cart"
-                element={<ProtectedRoute element={CartPage} />}
-              /><Route
-              path="/checkout"
-              element={<ProtectedRoute element={CheckoutPage} />}
-            />
-            <Route
-              path="/orders"
-              element={<ProtectedRoute element={OrderPage} />}
-            />
-            </Routes>
+      <AuthProvider>
+        <Router>
+          <div className="d-flex flex-column min-vh-100">
+            <Navbar />
+            <div className="flex-grow-1">
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/sign-in" element={<SignIn />} />
+                <Route path="/sign-up" element={<SignUp />} />
+                <Route
+                  path="/dashboard"
+                  element={<ProtectedRoute element={Dashboard} />}
+                />
+                <Route
+                  path="/users"
+                  element={<ProtectedRoute element={Users} />}
+                />
+                <Route
+                  path="/my-profile"
+                  element={<ProtectedRoute element={MyProfile} />}
+                />
+                <Route
+                  path="/cart"
+                  element={<ProtectedRoute element={CartPage} />}
+                />
+                <Route
+                  path="/checkout"
+                  element={<ProtectedRoute element={CheckoutPage} />}
+                />
+                <Route
+                  path="/orders"
+                  element={<ProtectedRoute element={OrderPage} />}
+                />
+              </Routes>
+            </div>
+            <ToastContainer position="bottom-right" />
           </div>
-          <ToastContainer position="bottom-right" />
-        </div>
-        <Footer />
-      </Router>
-    </AuthProvider>
+          <Footer />
+        </Router>
+      </AuthProvider>
     </CartProvider>
-
   );
 };
 

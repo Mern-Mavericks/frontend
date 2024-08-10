@@ -36,8 +36,8 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('user');
     localStorage.removeItem('isAuthenticated');
     localStorage.removeItem('token');
-    setCart([]); 
-    localStorage.removeItem('cart'); 
+    setCart([]);
+    localStorage.removeItem('cart');
   };
 
   return (

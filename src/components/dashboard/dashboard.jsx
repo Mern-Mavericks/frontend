@@ -41,17 +41,32 @@ const Dashboard = () => {
             <div key={product?._id} className="col-lg-4 col-md-6 mb-4">
               <div className="card h-100 text-center">
                 <img
-                  src={product?.image ? `src/${product.image}` : 'https://via.placeholder.com/300'}
+                  src={
+                    product?.image
+                      ? `src/${product.image}`
+                      : 'https://via.placeholder.com/300'
+                  }
                   className="card-img-top"
                   alt={product?.name || 'Product Image'}
                   style={{ height: '300px', width: '100%', objectFit: 'cover' }}
                 />
                 <div className="card-body" style={{ height: '250px' }}>
-                  <h5 className="card-title">{product?.name || 'Unnamed Product'}</h5>
-                  <p className="card-text mb-2" style={{ minHeight: '60px', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                  <h5 className="card-title">
+                    {product?.name || 'Unnamed Product'}
+                  </h5>
+                  <p
+                    className="card-text mb-2"
+                    style={{
+                      minHeight: '60px',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                    }}
+                  >
                     {product?.description || 'No description available.'}
                   </p>
-                  <p className="card-text">${product?.price?.toFixed(2) || 'N/A'}</p>
+                  <p className="card-text">
+                    ${product?.price?.toFixed(2) || 'N/A'}
+                  </p>
                   <div className="d-flex justify-content-center align-items-center">
                     <button
                       style={{ width: '100%' }}
@@ -76,7 +91,7 @@ const Dashboard = () => {
                         onChange={(e) =>
                           updateQuantity(
                             product,
-                            parseInt(e.target.value, 10) || 1
+                            parseInt(e.target.value, 10) || 1,
                           )
                         }
                       />

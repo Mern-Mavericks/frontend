@@ -7,7 +7,6 @@ export const CartProvider = ({ children }) => {
     const storedCart = localStorage.getItem('cart');
     return storedCart ? JSON.parse(storedCart) : [];
   });
-  
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
@@ -20,8 +19,8 @@ export const CartProvider = ({ children }) => {
         cart.map((item) =>
           item._id === product._id
             ? { ...item, quantity: item.quantity + 1 }
-            : item
-        )
+            : item,
+        ),
       );
     } else {
       setCart([...cart, { ...product, quantity: 1 }]);
@@ -34,8 +33,8 @@ export const CartProvider = ({ children }) => {
     } else {
       setCart(
         cart.map((item) =>
-          item._id === product._id ? { ...item, quantity } : item
-        )
+          item._id === product._id ? { ...item, quantity } : item,
+        ),
       );
     }
   };
@@ -45,7 +44,9 @@ export const CartProvider = ({ children }) => {
   };
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, updateQuantity, removeFromCart, setCart }}>
+    <CartContext.Provider
+      value={{ cart, addToCart, updateQuantity, removeFromCart, setCart }}
+    >
       {children}
     </CartContext.Provider>
   );

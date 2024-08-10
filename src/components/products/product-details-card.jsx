@@ -15,7 +15,7 @@ const ProductDetailsCard = ({ product, title, price, description, image }) => {
       navigate('/sign-in');
     } else {
       if (product) {
-        addProduct(product, quantity); // Pass product and quantity
+        addProduct(product, quantity);
         console.log('Product added to cart:', product);
       } else {
         console.error('Product is undefined or missing details');
@@ -37,7 +37,7 @@ const ProductDetailsCard = ({ product, title, price, description, image }) => {
             id="quantity"
             className="product-quantity"
             value={quantity}
-            onChange={(e) => setQuantity(Number(e.target.value))} // Keep track of user changing the quantity
+            onChange={(e) => setQuantity(Number(e.target.value))}
           >
             {[...Array(10).keys()].map((i) => (
               <option key={i + 1} value={i + 1}>

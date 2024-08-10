@@ -15,20 +15,20 @@ const HomePage = () => {
 
   useEffect(() => {
     const fetchFeaturedProducts = async () => {
-      const token = localStorage.getItem('token'); // Retrieve the token from localStorage
+      const token = localStorage.getItem('token');
 
       try {
         const response = await axios.get(
           'http://localhost:3000/api/products/featured',
           {
             headers: {
-              Authorization: `Bearer ${token}`, // Set the Authorization header with the token
+              Authorization: `Bearer ${token}`,
             },
           },
         );
-        console.log(response.data); // Log the fetched products
+        console.log(response.data);
         setProducts(response.data);
-        console.log(`Number of products fetched: ${response.data.length}`); // Log the number of products
+        console.log(`Number of products fetched: ${response.data.length}`);
       } catch (error) {
         console.error('Error fetching featured products:', error);
       }
@@ -37,7 +37,6 @@ const HomePage = () => {
     fetchFeaturedProducts();
   }, []);
 
-  // Array of product images
   const productImages = [
     product1,
     product2,

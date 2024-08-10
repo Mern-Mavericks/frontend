@@ -26,14 +26,14 @@ const ProductDetailsPage = () => {
 
   useEffect(() => {
     const fetchProduct = async () => {
-      const token = localStorage.getItem('token'); // Retrieve the token from localStorage
+      const token = localStorage.getItem('token');
 
       try {
         const res = await axios.get(
           `http://localhost:3000/api/products/${id}`,
           {
             headers: {
-              Authorization: `Bearer ${token}`, // Set the Authorization header with the token
+              Authorization: `Bearer ${token}`,
             },
           },
         );
