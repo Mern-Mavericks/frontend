@@ -62,16 +62,6 @@ const App = () => {
                   path="/orders"
                   element={<ProtectedRoute element={OrderPage} />}
                 />
-                <Route
-                  path="*"
-                  element={
-                    isAuthenticated ? (
-                      <Navigate to="/dashboard" />
-                    ) : (
-                      <Navigate to="/home" />
-                    )
-                  }
-                />
               </Routes>
             </div>
             <ToastContainer position="bottom-right" />
