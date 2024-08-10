@@ -45,21 +45,21 @@ const MyProfile = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     if (!name || !address || !phoneNumber) {
       toast.error('Please fill out all fields.');
       return;
     }
-  
+
     const formData = new FormData();
     formData.append('name', name);
     formData.append('address', address);
     formData.append('phone', phoneNumber);
-  
+
     if (e.target.profileImage.files[0]) {
       formData.append('profileImage', e.target.profileImage.files[0]);
     }
-  
+
     try {
       const response = await fetch('/api/users/me', {
         method: 'PUT',
@@ -68,7 +68,7 @@ const MyProfile = () => {
         },
         body: formData,
       });
-  
+
       if (response.ok) {
         toast.success('Profile updated successfully!');
       } else {
@@ -80,7 +80,6 @@ const MyProfile = () => {
       console.error('Error:', error);
     }
   };
-  
 
   return (
     <div className="container mt-4">
