@@ -1,84 +1,79 @@
 import React from 'react';
-import './cart-page.css';
 import { useCart } from '../../context/cart-context';
-import product1 from '../../images/product1.jpg';
-import product2 from '../../images/product2.jpg';
-import product3 from '../../images/product3.jpg';
-import product6 from '../../images/product6.jpg';
-import product7 from '../../images/product7.jpg';
-import product10 from '../../images/product10.jpg';
-
-const images = {
-  'images/product1.jpg': product1,
-  'images/product2.jpg': product2,
-  'images/product3.jpg': product3,
-  'images/product6.jpg': product6,
-  'images/product7.jpg': product7,
-  'images/product10.jpg': product10,
-};
 
 const CartPage = () => {
-  const { cart, removeProduct, updateQuantity } = useCart();
-
-  const calculateSubtotal = () => {
-    return cart.reduce(
-      (total, item) => total + item.product.price * item.quantity,
-      0,
-    );
-  };
-
-  const calculateTax = () => {
-    const taxRate = 0.13;
-    return calculateSubtotal() * taxRate;
-  };
+  const { cart, updateQuantity, removeFromCart } = useCart();
 
   const calculateTotal = () => {
-    return calculateSubtotal() + calculateTax();
+    return cart.reduce((acc, product) => acc + product.price * product.quantity, 0).toFixed(2);
+  };
+
+  const handleCheckout = () => {
+    // Implement checkout logic or redirect to checkout page
+    alert('Proceeding to checkout...');
   };
 
   return (
-    <div className="cart-page-container">
-      <h2 className="cart-title">Your Shopping Cart</h2>
-      <div className="cart-layout">
-        {cart.map((item, index) => (
-          <div className="cart-row" key={index}>
-            <div className="cart-product-details">
-              <img
-                src={images[item.product.image]}
-                alt={item.product.title}
-                className="cart-product-image"
-              />
-              <div className="cart-product-info">
-                <span className="cart-product-title">{item.product.name}</span>
-                <span className="cart-product-price">
-                  ${(item.product.price * item.quantity).toFixed(2)}
-                </span>
-              </div>
-              <input
-                type="number"
-                className="cart-quantity-input"
-                value={item.quantity}
-                min="1"
-                onChange={(e) =>
-                  updateQuantity(item.product._id, Number(e.target.value))
-                }
-              />
-              <button
-                className="btn btn-primary cart-btn"
-                onClick={() => removeProduct(item.product._id)}
+    <div className="container mt-5">
+      <h2 className="text-center mb-4">Your Shopping Cart</h2>
+      {cart.length === 0 ? (
+        <div className="alert alert-warning text-center" role="alert">
+          Your cart is currently empty.
+        </div>
+      ) : (
+        <div>
+          <ul className="list-group mb-4">
+            {cart.map((product) => (
+              <li
+                key={product._id}
+                className="list-group-item d-flex justify-content-between align-items-center p-2"
               >
-                Remove
-              </button>
-            </div>
+                <div className="d-flex align-items-center">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    style={{ width: '80px', height: '80px', objectFit: 'cover', marginRight: '15px' }}
+                  />
+                  <div>
+                    <h5 className="mb-1">{product.name}</h5>
+                    <p className="mb-1 text-muted">Price: ${product.price.toFixed(2)}</p>
+                    <p className="mb-0 text-muted">Total: ${(product.price * product.quantity).toFixed(2)}</p>
+                  </div>
+                </div>
+                <div className="d-flex align-items-center">
+                  <input
+                    type="number"
+                    className="form-control me-3"
+                    style={{ width: '80px' }}
+                    value={product.quantity}
+                    onChange={(e) =>
+                      updateQuantity(product, parseInt(e.target.value, 10) || 1)
+                    }
+                    min="1"
+                  />
+                  <button
+                    className="btn btn-outline-danger"
+                    onClick={() => removeFromCart(product)}
+                  >
+                    Remove
+                  </button>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <div className="text-right mb-4">
+            <h4>Total: ${calculateTotal()}</h4>
           </div>
-        ))}
-      </div>
-
-      <div className="cart-summary">
-        <p>Subtotal: ${calculateSubtotal().toFixed(2)}</p>
-        <p>Tax: ${calculateTax().toFixed(2)}</p>
-        <p>Total: ${calculateTotal().toFixed(2)}</p>
-      </div>
+          <div className="text-center">
+            <button 
+              className="btn btn-primary btn-lg"
+              onClick={handleCheckout}
+            >
+              Proceed to Checkout
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

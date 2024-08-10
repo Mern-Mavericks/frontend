@@ -26,7 +26,7 @@ const Users = () => {
       <h2 className="text-center mb-4">All Users</h2>
       <div className="row">
         {users.map((user) => (
-          <div key={user._id} className="col-md-3 mb-4">
+          <div key={user._id} className="col-md-4 mb-4">
             <div className="card text-center">
               <div className="card-body">
                 <h5 className="card-title">{user.username || 'N/A'}</h5>

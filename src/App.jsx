@@ -15,6 +15,8 @@ import Footer from './components/footer/footer';
 import { ToastContainer } from 'react-toastify';
 import { AuthProvider, useAuth } from './context/auth-context';
 import MyProfile from './components/my-profile/my-profile';
+import CartPage from './components/cart-page/cart-page';
+import { CartProvider } from './context/cart-context';
 
 const ProtectedRoute = ({ element: Component, ...rest }) => {
   const { isAuthenticated } = useAuth();
@@ -23,6 +25,8 @@ const ProtectedRoute = ({ element: Component, ...rest }) => {
 
 const App = () => {
   return (
+    <CartProvider>
+
     <AuthProvider>
       <Router>
         <div className="d-flex flex-column min-vh-100">
@@ -44,6 +48,10 @@ const App = () => {
                 path="/my-profile"
                 element={<ProtectedRoute element={MyProfile} />}
               />
+              <Route
+                path="/cart"
+                element={<ProtectedRoute element={CartPage} />}
+              />
             </Routes>
           </div>
           <ToastContainer position="bottom-right" />
@@ -51,6 +59,8 @@ const App = () => {
         <Footer />
       </Router>
     </AuthProvider>
+    </CartProvider>
+
   );
 };
 

@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
-import { toast } from 'react-toastify';
+import React from 'react';
+import { useCart } from '../../context/cart-context'; // Import useCart hook
 
 const Dashboard = () => {
-  const [products, setProducts] = useState([
+  const { cart, addToCart, updateQuantity, removeFromCart } = useCart();
+
+  const products = [
     {
       _id: '12345abcde',
       name: 'Product Name 1',
@@ -19,58 +21,8 @@ const Dashboard = () => {
       image: 'https://via.placeholder.com/300',
       stock: 5,
     },
-    {
-      _id: '11121klmno',
-      name: 'Product Name 3',
-      description: 'This is a short description of Product Name 3.',
-      price: 19.99,
-      image: 'https://via.placeholder.com/300',
-      stock: 20,
-    },
-    {
-      _id: '13141pqrst',
-      name: 'Product Name 4',
-      description: 'This is a short description of Product Name 4.',
-      price: 99.99,
-      image: 'https://via.placeholder.com/300',
-      stock: 0,
-    },
-  ]);
-  const [cart, setCart] = useState([]);
-
-  const addToCart = (product) => {
-    const existingProduct = cart.find((item) => item._id === product._id);
-    if (existingProduct) {
-      setCart(
-        cart.map((item) =>
-          item._id === product._id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item,
-        ),
-      );
-    } else {
-      setCart([...cart, { ...product, quantity: 1 }]);
-    }
-    toast.success(`${product.name} added to cart`);
-  };
-
-  const updateQuantity = (product, quantity) => {
-    if (quantity <= 0) {
-      removeFromCart(product);
-    } else {
-      setCart(
-        cart.map((item) =>
-          item._id === product._id ? { ...item, quantity } : item,
-        ),
-      );
-      toast.info(`${product.name} quantity updated to ${quantity}`);
-    }
-  };
-
-  const removeFromCart = (product) => {
-    setCart(cart.filter((item) => item._id !== product._id));
-    toast.error(`${product.name} removed from cart`);
-  };
+    // More products...
+  ];
 
   return (
     <div className="container mt-4">
@@ -92,7 +44,7 @@ const Dashboard = () => {
                   <p className="card-text">${product.price.toFixed(2)}</p>
                   <div className="d-flex justify-content-between align-items-center">
                     <button
-                      style={{ width: '30%' }}
+                     style={{ width: '35%' }}
                       className="btn btn-primary"
                       onClick={() => addToCart(product)}
                       disabled={product.stock <= 0}
@@ -102,8 +54,8 @@ const Dashboard = () => {
                     {isInCart && (
                       <>
                         <input
+                         style={{ width: '15%' }}
                           type="number"
-                          style={{ width: '15%' }}
                           className="form-control"
                           value={
                             cart.find((item) => item._id === product._id)
@@ -113,12 +65,12 @@ const Dashboard = () => {
                           onChange={(e) =>
                             updateQuantity(
                               product,
-                              parseInt(e.target.value, 10) || 1,
+                              parseInt(e.target.value, 10) || 1
                             )
                           }
                         />
                         <button
-                          style={{ width: '35%' }}
+                         style={{ width: '35%' }}
                           className="btn btn-danger"
                           onClick={() => removeFromCart(product)}
                         >

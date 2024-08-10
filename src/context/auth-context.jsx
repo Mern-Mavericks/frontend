@@ -1,4 +1,5 @@
 import React, { createContext, useState, useContext } from 'react';
+import { useCart } from './cart-context';
 
 const AuthContext = createContext();
 
@@ -17,6 +18,8 @@ export const AuthProvider = ({ children }) => {
     return localStorage.getItem('token') || null;
   });
 
+  const { setCart } = useCart();
+
   const login = (userData, jwtToken) => {
     setUser(userData);
     setIsAuthenticated(true);
@@ -33,6 +36,8 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('user');
     localStorage.removeItem('isAuthenticated');
     localStorage.removeItem('token');
+    setCart([]); 
+    localStorage.removeItem('cart'); 
   };
 
   return (
