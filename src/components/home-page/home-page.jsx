@@ -9,6 +9,7 @@ import product3 from '../../images/product3.jpg';
 import product6 from '../../images/product6.jpg';
 import product7 from '../../images/product7.jpg';
 import product10 from '../../images/product10.jpg';
+import heroImage from '../../images/mern-mavericks-header.png';
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
@@ -18,14 +19,11 @@ const HomePage = () => {
       const token = localStorage.getItem('token');
       const API_URL = import.meta.env.VITE_API_URL;
       try {
-        const response = await axios.get(
-          `${API_URL}/api/products/featured`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
+        const response = await axios.get(`${API_URL}/api/products/featured`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
           },
-        );
+        });
         console.log(response.data);
         setProducts(response.data);
         console.log(`Number of products fetched: ${response.data.length}`);
@@ -58,7 +56,14 @@ const HomePage = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="hero">
+      <section
+        className="hero"
+        style={{
+          backgroundImage: `url(${heroImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
         <div className="container">
           <h2>Welcome to MERN Mavericks Store</h2>
           <p>Discover the best products at unbeatable prices</p>
