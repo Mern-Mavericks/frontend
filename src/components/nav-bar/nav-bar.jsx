@@ -31,7 +31,7 @@ const Navbar = () => {
           to={isAuthenticated ? '/dashboard' : '/'}
         >
           <img
-            src="/src/images/MERN-Mavericks.png"
+            src="/mern-mavericks-logo.png"
             alt="Logo"
             width="30"
             height="30"
