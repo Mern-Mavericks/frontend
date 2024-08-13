@@ -1,16 +1,26 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 
+const backendUrl = process.env.VITE_API_URL || 'https://backend-five-theta-73.vercel.app';
+
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: 5173,
     proxy: {
-      "/auth": {
-        target: "http://localhost:3000",
+      '/api': {
+        target: backendUrl,
+        changeOrigin: true,
+        secure: false,
       },
-      "/api": {
-        target: "http://localhost:3000",
+      '/auth': {
+        target: backendUrl,
+        changeOrigin: true,
+        secure: false,
+      },
+      '/users': {
+        target: backendUrl,
+        changeOrigin: true,
+        secure: false,
       },
     },
   },
